@@ -317,4 +317,5 @@ D:\documentos\prog\PrimeStock.API\obj\Debug\net10.0\refint\PrimeStock.API.dll
 D:\documentos\prog\PrimeStock.API\obj\Debug\net10.0\PrimeStock.API.pdb
 D:\documentos\prog\PrimeStock.API\obj\Debug\net10.0\PrimeStock.API.genruntimeconfig.cache
 D:\documentos\prog\PrimeStock.API\obj\Debug\net10.0\ref\PrimeStock.API.dll
+D:\documentos\prog\PrimeStock.API\obj\Debug\net10.0\PrimeStock.API.sourcelink.json
 D:\documentos\prog\PrimeStock.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

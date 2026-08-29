@@ -12,6 +12,8 @@ namespace PrimeStock.API.Data
         public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Produto> Produtos {  get; set; }
+
+        public DbSet<Venda> Vendas { get; set; }
     }
 }
 

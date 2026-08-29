@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrimeStock.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b62e7e15597777c2b9bddf95b54258801f64d1b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22c1698ddc32ebca3a2b7ffaf09e7b6a8ce5bbc8")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrimeStock.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrimeStock.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

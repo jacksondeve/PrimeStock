@@ -144,5 +144,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrimeStock.API.Controllers.VendaController",
+    "Method": "CadastrarVenda",
+    "RelativePath": "api/Venda/cadastrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "venda",
+        "Type": "PrimeStock.API.Models.Venda",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
