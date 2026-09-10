@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrimeStock.API.Data;
 
@@ -11,9 +12,11 @@ using PrimeStock.API.Data;
 namespace PrimeStock.API.Migrations
 {
     [DbContext(typeof(PrimeStockDbContext))]
-    partial class PrimeStockDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260829165316_AddItemVenda")]
+    partial class AddItemVenda
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,10 +46,6 @@ namespace PrimeStock.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.HasIndex("VendaId");
 
                     b.ToTable("ItemVenda");
                 });
@@ -126,35 +125,6 @@ namespace PrimeStock.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vendas");
-                });
-
-            modelBuilder.Entity("PrimeStock.API.Models.ItemVenda", b =>
-                {
-                    b.HasOne("PrimeStock.API.Models.Produto", "Produto")
-                        .WithMany("ItemVendas")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PrimeStock.API.Models.Venda", "Venda")
-                        .WithMany("ItemVendas")
-                        .HasForeignKey("VendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Produto");
-
-                    b.Navigation("Venda");
-                });
-
-            modelBuilder.Entity("PrimeStock.API.Models.Produto", b =>
-                {
-                    b.Navigation("ItemVendas");
-                });
-
-            modelBuilder.Entity("PrimeStock.API.Models.Venda", b =>
-                {
-                    b.Navigation("ItemVendas");
                 });
 #pragma warning restore 612, 618
         }

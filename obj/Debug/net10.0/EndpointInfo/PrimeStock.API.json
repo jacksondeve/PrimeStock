@@ -5,6 +5,37 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/ItemVenda/Cadastrar": {
+      "post": {
+        "tags": [
+          "ItemVenda"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemVendaCadastroDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemVendaCadastroDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemVendaCadastroDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Produto/cadastrar": {
       "post": {
         "tags": [
@@ -280,6 +311,60 @@
   },
   "components": {
     "schemas": {
+      "ItemVenda": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vendaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "produtoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantidade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precoUnitario": {
+            "type": "number",
+            "format": "double"
+          },
+          "venda": {
+            "$ref": "#/components/schemas/Venda"
+          },
+          "produto": {
+            "$ref": "#/components/schemas/Produto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemVendaCadastroDTO": {
+        "type": "object",
+        "properties": {
+          "vendaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "produtoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantidade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precoUnitario": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "Produto": {
         "type": "object",
         "properties": {
@@ -306,6 +391,13 @@
           "dataCadastro": {
             "type": "string",
             "format": "date-time"
+          },
+          "itemVendas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemVenda"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -350,6 +442,13 @@
           "valorTotal": {
             "type": "number",
             "format": "double"
+          },
+          "itemVendas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemVenda"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -357,6 +456,9 @@
     }
   },
   "tags": [
+    {
+      "name": "ItemVenda"
+    },
     {
       "name": "Produto"
     },

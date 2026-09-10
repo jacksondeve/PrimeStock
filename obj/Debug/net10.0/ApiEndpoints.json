@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "PrimeStock.API.Controllers.ItemVendaController",
+    "Method": "CadastrarItemVenda",
+    "RelativePath": "api/ItemVenda/Cadastrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemVendaDTO",
+        "Type": "PrimeStock.API.Models.ItemVendaCadastroDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PrimeStock.API.Controllers.ProdutoController",
     "Method": "BuscaProdutoporId",
     "RelativePath": "api/Produto/buscar/{id}",

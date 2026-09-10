@@ -7,5 +7,8 @@
         public DateTime DataVenda {  get; set; }
 
         public decimal ValorTotal { get; set; }
+
+        public List<ItemVenda> ItemVendas { get; set; } = new();
+
     }
 }
