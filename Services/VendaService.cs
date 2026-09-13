@@ -52,8 +52,18 @@ namespace PrimeStock.API.Services
                 return "venda nao possui itens";
             }
 
-                return "venda possui itens";
+            decimal total = 0;
 
+            foreach (var item in itensVenda)
+            {
+                total = total + (item.Quantidade * item.PrecoUnitario);
+            }
+
+            venda.ValorTotal = total;
+
+            _vendaRepository.AtualizarVenda(venda);
+
+            return "venda finalizzada com sucesso ";
         }
 
         
