@@ -16,5 +16,10 @@ namespace PrimeStock.API.Repositories
             _context.Vendas.Add(venda);
             _context.SaveChanges();
         }
+
+        public Venda BuscaVendaporId(int id) 
+        {
+            return _context.Vendas.FirstOrDefault(v => v.Id == id);
+        }
     }
 }

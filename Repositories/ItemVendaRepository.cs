@@ -18,6 +18,10 @@ namespace PrimeStock.API.Repositories
             _context.SaveChanges();
         }
 
+        public List<ItemVenda> BuscarItensPorVendaId(int vendaId)
+        {
+            return _context.ItemVenda.Where(iv => iv.VendaId == vendaId).ToList();
+        }
 
     }
 }

@@ -20,5 +20,13 @@ namespace PrimeStock.API.Controllers
             var vendaCadastrada = _vendaService.CadastrarVenda(venda);
             return Ok(vendaCadastrada);
         }
+
+        [HttpPost("Finalizar/{id}")]
+        public IActionResult FinalizarVenda(int id) 
+        {
+            var resultado = _vendaService.FinalizarVenda(id);
+
+            return Ok(resultado);
+        }    
     }
 }
