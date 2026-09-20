@@ -70,5 +70,11 @@ namespace PrimeStock.API.Repositories
                 return null;
             }
         }
+
+        public void SalvarProduto(Produto produto)
+        {
+            _context.Produtos.Update(produto);
+            _context.SaveChanges();
+        }
     }
 }

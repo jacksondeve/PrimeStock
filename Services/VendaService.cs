@@ -8,10 +8,14 @@ namespace PrimeStock.API.Services
         private readonly VendaRepository _vendaRepository;
         private readonly ItemVendaRepository _itemVendaRepository;
 
-        public VendaService(VendaRepository vendaRepository ,ItemVendaRepository itemVendaRepository)
+        private readonly ProdutoRepository _produtoRepository;
+
+        public VendaService(VendaRepository vendaRepository ,ItemVendaRepository itemVendaRepository, ProdutoRepository produtoRepository)
         {
             _vendaRepository = vendaRepository;
-            _itemVendaRepository = itemVendaRepository;        }
+            _itemVendaRepository = itemVendaRepository;
+            _produtoRepository = produtoRepository;
+        }
 
         public string CadastrarVenda(Venda venda)
         {
@@ -56,7 +60,13 @@ namespace PrimeStock.API.Services
 
             foreach (var item in itensVenda)
             {
+                var produto = _produtoRepository.listarProdutoporId(item.ProdutoId);
+
                 total = total + (item.Quantidade * item.PrecoUnitario);
+
+                produto.estoque = produto.estoque - item.Quantidade;
+
+                _produtoRepository.SalvarProduto(produto);
             }
 
             venda.ValorTotal = total;
