@@ -48,6 +48,10 @@ namespace PrimeStock.API.Services
                 return "venda nao encontrada";
             }
 
+            if (venda.Finalizada) 
+            {
+                return "venda ja finalizada";
+            }
 
             var itensVenda = BuscaItensDaVenda(vendaId);
 
@@ -70,6 +74,7 @@ namespace PrimeStock.API.Services
             }
 
             venda.ValorTotal = total;
+            venda.Finalizada = true;
 
             _vendaRepository.AtualizarVenda(venda);
 

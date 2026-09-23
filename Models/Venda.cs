@@ -10,5 +10,7 @@
 
         public List<ItemVenda> ItemVendas { get; set; } = new();
 
+        public bool Finalizada { get; set; }
+
     }
 }
