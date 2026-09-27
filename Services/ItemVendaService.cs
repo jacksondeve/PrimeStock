@@ -9,10 +9,13 @@ namespace PrimeStock.API.Services
         private readonly ItemVendaRepository _itemVendaRepository;
         public readonly ProdutoRepository _ProdutoRepository;
 
-        public ItemVendaService(ItemVendaRepository itemVendaRepository, ProdutoRepository produtoRepository)
+        private readonly VendaRepository _VendaRepository;
+
+        public ItemVendaService(ItemVendaRepository itemVendaRepository, ProdutoRepository produtoRepository, VendaRepository vendaRepository)
         {
             _itemVendaRepository = itemVendaRepository;
             _ProdutoRepository = produtoRepository;
+            _VendaRepository = vendaRepository;
 
         }
 
@@ -20,6 +23,17 @@ namespace PrimeStock.API.Services
         {
             Console.WriteLine($"VendaId: {itemVendaDTO.VendaId}");
             Console.WriteLine($"ProdutoId: {itemVendaDTO.ProdutoId}");
+
+            var venda = _VendaRepository.BuscaVendaporId(itemVendaDTO.VendaId);
+            if(venda == null)
+            {
+                return "Venda não encontrada";
+            }
+
+            if (venda.Finalizada)
+            {
+                return "Venda ja finalizada";
+            }
             var produto = _ProdutoRepository.listarProdutoporId(itemVendaDTO.ProdutoId);
 
             if (produto == null)

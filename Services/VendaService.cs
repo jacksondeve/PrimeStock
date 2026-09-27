@@ -62,17 +62,29 @@ namespace PrimeStock.API.Services
 
             decimal total = 0;
 
+            // verifica se todos os produtos possuem estoque suficiente
+            foreach (var item in itensVenda)
+            {
+                var produto = _produtoRepository.listarProdutoporId(item.ProdutoId);
+
+                if(produto.estoque < item.Quantidade)
+                {
+                    return $" Produto possui apenas { produto.estoque}  unidades disponiveis";
+                }
+
+            }
+
+           
+            // realiza a baixa do estoque  e calcula o valor da venda
             foreach (var item in itensVenda)
             {
                 var produto = _produtoRepository.listarProdutoporId(item.ProdutoId);
 
                 total = total + (item.Quantidade * item.PrecoUnitario);
-
                 produto.estoque = produto.estoque - item.Quantidade;
-
                 _produtoRepository.SalvarProduto(produto);
             }
-
+          
             venda.ValorTotal = total;
             venda.Finalizada = true;
 
