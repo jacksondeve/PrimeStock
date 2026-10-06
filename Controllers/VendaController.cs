@@ -27,6 +27,19 @@ namespace PrimeStock.API.Controllers
             var resultado = _vendaService.FinalizarVenda(id);
 
             return Ok(resultado);
-        }    
+        }
+
+        [HttpGet("consultar/{id}")]
+        public IActionResult ConsultarVenda(int id) 
+        {
+            var venda = _vendaService.ConsultaVenda(id);
+
+            if(venda == null) 
+            {
+                return NotFound("Venda não encontrada");
+            }
+
+            return Ok(venda);
+        }
     }
 }

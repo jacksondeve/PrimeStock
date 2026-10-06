@@ -93,6 +93,47 @@ namespace PrimeStock.API.Services
             return "venda finalizzada com sucesso ";
         }
 
+        public ConsultaVendaDTO ConsultaVenda(int vendaId)
+        {
+            var venda = BuscaVendaporId(vendaId);
+
+            if (venda == null)
+            {
+                return null;
+            }
+
+            var ItensVenda = BuscaItensDaVenda(vendaId);
+
+            var consultaVenda = new ConsultaVendaDTO()
+            {
+                Id = venda.Id,
+                DataVenda = venda.DataVenda,
+                ValorTotal = venda.ValorTotal,
+                Finalizada = venda.Finalizada,
+                Itens = new List<ItemVendaConsultaDTO>() 
+
+            };
+
+            foreach (var item in ItensVenda)
+            {
+                var produto = _produtoRepository.listarProdutoporId(item.ProdutoId);
+
+                var itemConsulta = new ItemVendaConsultaDTO()
+                {
+                    NomeProduto = produto.Nome,
+                    Quantidade = item.Quantidade,
+                    PrecoUnitario = item.PrecoUnitario
+                };
+
+                consultaVenda.Itens.Add(itemConsulta);
+            }
+
+            return consultaVenda;
+
+           
+
+        }
+
         
 
     }
