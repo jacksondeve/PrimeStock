@@ -10,7 +10,7 @@
 
         public List<ItemVenda> ItemVendas { get; set; } = new();
 
-        public bool Finalizada { get; set; }
+        public StatusVenda Status { get; set; }
 
     }
 }

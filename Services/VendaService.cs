@@ -48,7 +48,7 @@ namespace PrimeStock.API.Services
                 return "venda nao encontrada";
             }
 
-            if (venda.Finalizada) 
+            if (venda.Status == StatusVenda.Finalizada ) 
             {
                 return "venda ja finalizada";
             }
@@ -86,7 +86,7 @@ namespace PrimeStock.API.Services
             }
           
             venda.ValorTotal = total;
-            venda.Finalizada = true;
+            venda.Status = StatusVenda.Finalizada;
 
             _vendaRepository.AtualizarVenda(venda);
 
@@ -109,7 +109,7 @@ namespace PrimeStock.API.Services
                 Id = venda.Id,
                 DataVenda = venda.DataVenda,
                 ValorTotal = venda.ValorTotal,
-                Finalizada = venda.Finalizada,
+                Status = venda.Status,
                 Itens = new List<ItemVendaConsultaDTO>() 
 
             };
@@ -134,7 +134,53 @@ namespace PrimeStock.API.Services
 
         }
 
-        
+        public string CancelarVenda(int vendaId)
+        {
+            var venda = BuscaVendaporId(vendaId);
+
+            if (venda == null)
+            {
+                return "Venda não encontrada";
+            }
+
+            if(venda.Status == StatusVenda.Enviada)
+            {
+                return "Venda enviada nao pode ser cancelada";
+            }
+
+            if (venda.Status == StatusVenda.Cancelada)
+            {
+                return "Venda ja cancelada";
+            }
+
+            if (venda.Status == StatusVenda.Aberta)
+            {
+                venda.Status = StatusVenda.Cancelada;
+                _vendaRepository.AtualizarVenda(venda);
+                return "Venda cancelada com sucesso";
+
+            }
+
+            if(venda.Status == StatusVenda.Finalizada)
+            {
+                var itensvenda = buscarItensDaVenda(vendaId);
+
+                foreach ( ItemVenda item in  itensvenda)
+                {
+                    var produto = _produtoRepository.listarProdutoporId(item.ProdutoId);
+
+                    produto.estoque = produto.estoque + item.Quantidade;
+
+                    _produtoRepository.SalvarProduto(produto);
+                 }
+
+                venda.Status = StatusVenda.Cancelada;
+                _vendaRepository.AtualizarVenda(venda);
+
+                return "cancelada com sucesso ";
+            }
+            return "Venda pode ser cancelada";
+        }
 
     }
 }

@@ -25,12 +25,12 @@ namespace PrimeStock.API.Services
             Console.WriteLine($"ProdutoId: {itemVendaDTO.ProdutoId}");
 
             var venda = _VendaRepository.BuscaVendaporId(itemVendaDTO.VendaId);
-            if(venda == null)
+            if(venda.Status == null)
             {
                 return "Venda não encontrada";
             }
 
-            if (venda.Finalizada)
+            if (venda.Status == StatusVenda.Finalizada)
             {
                 return "Venda ja finalizada";
             }

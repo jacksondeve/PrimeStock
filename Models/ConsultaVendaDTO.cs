@@ -9,7 +9,7 @@ namespace PrimeStock.API.Models
 
         public decimal ValorTotal   { get; set; }
 
-        public bool Finalizada { get; set; }
+        public StatusVenda Status { get; set; }
 
         public List<ItemVendaConsultaDTO> Itens { get; set; }
 
